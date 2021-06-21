@@ -1,17 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+<!-- Importamos el html base de bootstrap-->
+{% extends 'bootstrap/base.html' %}
+
+<!-- Bootstrap funciona con templates, aqui quitamos el head y lo reemplazamos con código flask-->
+{% block head %}
+    {{ super() }}
     <title>
-        {% block tittle %} FLASK PLATZI | {% endblock %}
+        {% block tittle %} Flask Platzi | {% endblock %}
     </title>
     <link rel="stylesheet" href="{{url_for('static', filename='css/main.css')}}">
-</head>
-<body>
-    <header>
+{% endblock %}
+
+{% block body %}
+    {% block navbar%}
         {% include 'navbar.html' %}
-    </header>
+    {% endblock %}
+
     {% block content %}
     {% endblock %}
-</body>
-</html>
+{% endblock %}
