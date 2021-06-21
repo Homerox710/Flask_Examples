@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% import 'macros.html' as macros %}
+{% import 'bootstrap/wtf.html' as wtf %}
 <!-- Método que cambia el título de base.html-->
 {% block tittle %}
     {{super()}}
@@ -9,14 +10,25 @@
 
 <!-- Método que carga el body de base.html-->
 {% block content %}
-{% if user_ip %}
-<h1>Hello World Platzi, tu IP es {{ user_ip }}</h1>
-{% else %}
-    <a href="{{url_for('index')}}"> Ir a inicio</a>
-{% endif %}
-<ul>
-{% for todo in todos %}
-    {{ macros.render_todo(todo) }}
-{% endfor %}
-</ul>
+    {% if user_ip %}
+    <h1>Hello World Platzi, tu IP es {{ user_ip }}</h1>
+    {% else %}
+        <a href="{{url_for('index')}}"> Ir a inicio</a>
+    {% endif %}
+
+    <div class="container">
+        <!-- Esta es la forma de hacerlo sin importat bootstrap
+        <form action="{{url_for('hello')}}" method="POST">
+            {{ login_form.username }}
+            {{ login_form.username.label }}
+        </form>
+        -->
+        {{wtf.quick_form(login_form)}}
+    </div>
+
+    <ul>
+    {% for todo in todos %}
+        {{ macros.render_todo(todo) }}
+    {% endfor %}
+    </ul>
 {% endblock %}
