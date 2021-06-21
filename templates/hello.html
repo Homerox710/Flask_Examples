@@ -10,8 +10,12 @@
 
 <!-- Método que carga el body de base.html-->
 {% block content %}
+    {% if username %}
+        <h1>Bienvenido, {{ username | capitalize}}</h1> <!-- Aquí utilizamos un filtro de variable con | -->
+    {% endif %}
+
     {% if user_ip %}
-    <h1>Hello World Platzi, tu IP es {{ user_ip }}</h1>
+    <h3>Tu IP es {{ user_ip }}</h3>
     {% else %}
         <a href="{{url_for('index')}}"> Ir a inicio</a>
     {% endif %}
