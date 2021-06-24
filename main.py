@@ -36,7 +36,7 @@ def index():
     return response
 
 #Especificamos los métodos permitidos
-@app.route('/hello', methods=['GET','POST'])
+@app.route('/hello', methods=['GET'])
 def hello():
     user_ip = session.get('user_ip') #Obtenemos la ip de session
     login_form = LoginForm()
@@ -49,10 +49,10 @@ def hello():
         'username': username
     }
 
-    if login_form.validate_on_submit():
-        username = login_form.username.data
-        session['username'] = username
-        flash('Nombre de usuario registrado con éxito!')
-        return  redirect(url_for('index'))
+    #if login_form.validate_on_submit():
+        #username = login_form.username.data
+        #session['username'] = username
+        #flash('Nombre de usuario registrado con éxito!')
+        #return  redirect(url_for('index'))
     return render_template('hello.html', **context) #Diccionario expandido para referenciarlas directamente
 
