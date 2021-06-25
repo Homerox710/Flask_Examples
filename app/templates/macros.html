@@ -1,5 +1,5 @@
 <!-- Aquí vamos a crear pedazos de código reutilizables-->
 
 {% macro render_todo(todo) %}
-    <li>Descripción: {{todo}}</li>
+    <li>Descripción: {{todo.to_dict().description}}</li>
 {% endmacro %}
