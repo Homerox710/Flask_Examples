@@ -1,6 +1,7 @@
 from flask import Flask, request, make_response, redirect, render_template, session, url_for, flash
 from app.forms import LoginForm
 import unittest
+from flask_login import login_required
 from app import create_app
 from app.firestore_service import get_users, get_todos
 app = create_app()
@@ -35,6 +36,7 @@ def index():
 
 #Especificamos los métodos permitidos
 @app.route('/hello', methods=['GET'])
+@login_required
 def hello():
     user_ip = session.get('user_ip') #Obtenemos la ip de session
     username = session.get('username')
@@ -44,9 +46,5 @@ def hello():
         'username': username
     }
 
-    users = get_users()
-    for user in users:
-        print(user.id)
-        print(user.to_dict()['password'])
     return render_template('hello.html', **context) #Diccionario expandido para referenciarlas directamente
 
