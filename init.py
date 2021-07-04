@@ -1,11 +1,11 @@
+from flask import Flask, request, make_response, redirect, render_template, session, url_for, flash
+from flask import Flask;
+from app.forms import LoginForm
+from app.forms import LoginForm
 import unittest
-from flask import request, make_response, redirect, render_template, session, url_for, flash
 from flask_login import login_required, current_user
-
-
 from app import create_app
-from app.forms import TodoForm
-from app.firestore_service import get_users, get_todos, put_todo
+from app.firestore_service import get_users, get_todos, get_user
 app = create_app()
 
 todos = ['Comprar café', 'Enviar solicitud de compra', 'Entregar video']
